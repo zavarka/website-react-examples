@@ -5,19 +5,16 @@ import { AddChannelButton } from './AddChannelButton';
 import { useWorkspaceController, Workspace } from '../../context/WorkspaceController';
 
 import type { ChannelListMessengerProps } from 'stream-chat-react';
-import clsx from "clsx";
+import clsx from 'clsx';
+
+import './styles/index.scss';
 
 export type TeamChannelListProps = ChannelListMessengerProps & {
   type: string;
 };
 
 const ChannelList = (props: PropsWithChildren<TeamChannelListProps>) => {
-  const {
-    children,
-    error = false,
-    loading,
-    type,
-  } = props;
+  const { children, error = false, loading, type } = props;
 
   const { displayWorkspace } = useWorkspaceController();
 
@@ -46,13 +43,17 @@ const ChannelList = (props: PropsWithChildren<TeamChannelListProps>) => {
   }
 
   return (
-    <div className={clsx('team-channel-list', `team-channel-list--${type === 'team' || type === 'ccm_public' ? 'group' : 'dm'}`)}>
+    <div
+      className={clsx(
+        'team-channel-list',
+        `team-channel-list--${type === 'team' || type === 'ccm_public' ? 'group' : 'dm'}`,
+      )}
+    >
       <div className='team-channel-list__header'>
         <p className='team-channel-list__header__title'>
           {type === 'team' ? 'Channels' : 'Direct Messages'}
         </p>
-        <AddChannelButton onClick={handleAddChannelClick}
-        />
+        <AddChannelButton onClick={handleAddChannelClick} />
       </div>
       {children}
     </div>

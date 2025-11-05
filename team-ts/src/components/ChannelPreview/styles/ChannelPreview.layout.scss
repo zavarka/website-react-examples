@@ -1,4 +1,4 @@
-@use '../utils';
+@use '../../../styles/utils';
 
 .channel-preview {
   display: flex;
@@ -22,7 +22,7 @@
   padding-left: 26px;
 
   p {
-    @include ellipsis-text;
+    @include utils.ellipsis-text;
     text-align: start;
   }
 

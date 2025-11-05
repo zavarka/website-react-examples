@@ -9,14 +9,13 @@ import { ResultsDropdown } from './ResultsDropdown';
 
 import { SearchIcon } from '../../assets';
 
+import './styles/index.scss';
+
 export const ChannelSearch = () => {
   const { client, setActiveChannel } = useChatContext();
 
   const [allChannels, setAllChannels] = useState<ConcatArray<ChannelOrUserType> | undefined>();
-  const [teamChannels, setTeamChannels] = useState<
-    | Channel[]
-    | undefined
-  >();
+  const [teamChannels, setTeamChannels] = useState<Channel[] | undefined>();
   const [directChannels, setDirectChannels] = useState<UserResponse[] | undefined>();
 
   const [focused, setFocused] = useState<number>();
@@ -77,9 +76,7 @@ export const ChannelSearch = () => {
     }
   }, [allChannels, focused]);
 
-  const setChannel = (
-    channel: Channel,
-  ) => {
+  const setChannel = (channel: Channel) => {
     setQuery('');
     setActiveChannel(channel);
   };
@@ -134,12 +131,7 @@ export const ChannelSearch = () => {
         <div className='channel-search__input__icon'>
           <SearchIcon />
         </div>
-        <input
-          onChange={onSearch}
-          placeholder='Search'
-          type='text'
-          value={query}
-        />
+        <input onChange={onSearch} placeholder='Search' type='text' value={query} />
       </div>
       {query && (
         <ResultsDropdown

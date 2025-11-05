@@ -6,11 +6,11 @@
 @import 'global_theme_variables';
 @import 'layout';
 
-// @import 'AdminPanel';      --> DELETED
+// @import 'AdminPanel';        --> DELETED
 @import 'Attachment';
 @import 'Channel';
-@import 'ChannelList';
-@import 'ChannelSearch';
+// @import 'ChannelList';       --> RELOCATED
+// @import 'ChannelSearch';     --> RELOCATED
 @import 'Message';
 @import 'MessageActions';
 @import 'MessageInput';
