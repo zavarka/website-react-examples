@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   defaultPinPermissions,
   MessageInput,
@@ -8,9 +7,8 @@ import {
   Window,
 } from 'stream-chat-react';
 
-import {PinnedMessageList} from '../PinnedMessageList/PinnedMessageList';
-import {TeamChannelHeader} from '../TeamChannelHeader/TeamChannelHeader';
-import {ThreadMessageInput} from "../TeamMessageInput/TeamMessageInput";
+import { TeamChannelHeader } from '../TeamChannelHeader/TeamChannelHeader';
+import { ThreadMessageInput } from '../TeamMessageInput/TeamMessageInput';
 
 export const ChannelInner = () => {
   // todo: migrate to channel capabilities once migration guide is available
@@ -27,14 +25,13 @@ export const ChannelInner = () => {
   };
 
   return (
-      <>
-        <Window>
-          <TeamChannelHeader />
-          <MessageList disableQuotedMessages={true} pinPermissions={pinnedPermissions} />
-          <MessageInput minRows={1} maxRows={8} />
-        </Window>
-        <Thread additionalMessageInputProps={{ maxRows: 8, minRows: 1, Input: ThreadMessageInput }} />
-        <PinnedMessageList />
+    <>
+      <Window>
+        <TeamChannelHeader />
+        <MessageList disableQuotedMessages={true} pinPermissions={pinnedPermissions} />
+        <MessageInput minRows={1} maxRows={8} />
+      </Window>
+      <Thread additionalMessageInputProps={{ maxRows: 8, minRows: 1, Input: ThreadMessageInput }} />
     </>
   );
 };

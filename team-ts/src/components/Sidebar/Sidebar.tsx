@@ -1,9 +1,9 @@
 import { ChannelList } from 'stream-chat-react';
 
 import {
-    EmptyDMChannelListIndicator,
-    EmptyGroupChannelListIndicator
-} from "./EmptyChannelListIndicator";
+  EmptyDMChannelListIndicator,
+  EmptyGroupChannelListIndicator,
+} from './EmptyChannelListIndicator';
 import { ChannelSearch } from '../ChannelSearch/ChannelSearch';
 import { TeamChannelList } from '../TeamChannelList/TeamChannelList';
 import { ChannelPreview } from '../ChannelPreview/ChannelPreview';
@@ -13,23 +13,22 @@ import { CompanyLogo } from './icons';
 import type { Channel, ChannelFilters } from 'stream-chat';
 import { ChannelSort } from 'stream-chat';
 
+import './styles/index.scss';
 
-
-
-  const filters: ChannelFilters[] = [
-    { type: 'team' },
-    { type: 'messaging' },
-    { type: 'ccm_public' },
-    { type: 'ccm_community' },
-    { type: 'ccm_member_sharing' },
-  ];
+const filters: ChannelFilters[] = [
+  { type: 'team' },
+  { type: 'messaging' },
+  { type: 'ccm_public' },
+  { type: 'ccm_community' },
+  { type: 'ccm_member_sharing' },
+];
 const options = { state: true, watch: true, presence: true, limit: 3 };
 const sort: ChannelSort = { last_message_at: -1, updated_at: -1 };
 
 const FakeCompanySelectionBar = () => (
   <div className='sidebar__company-selection-bar'>
     <div className='sidebar__company-badge'>
-        <CompanyLogo />
+      <CompanyLogo />
     </div>
   </div>
 );
@@ -53,18 +52,8 @@ const TeamChannelsList = () => (
     options={options}
     sort={sort}
     EmptyStateIndicator={EmptyGroupChannelListIndicator}
-    List={(listProps) => (
-      <TeamChannelList
-        {...listProps}
-        type='team'
-      />
-    )}
-    Preview={(previewProps) => (
-      <ChannelPreview
-        {...previewProps}
-        type='team'
-      />
-    )}
+    List={(listProps) => <TeamChannelList {...listProps} type='team' />}
+    Preview={(previewProps) => <ChannelPreview {...previewProps} type='team' />}
   />
 );
 
@@ -76,20 +65,10 @@ const CcmPublicChannelsList = () => (
     sort={sort}
     setActiveChannelOnMount={false}
     EmptyStateIndicator={EmptyDMChannelListIndicator}
-    List={(listProps) => (
-      <TeamChannelList
-        {...listProps}
-        type='ccm_public'
-      />
-    )}
-    Preview={(previewProps) => (
-      <ChannelPreview
-        {...previewProps}
-        type='ccm_public'
-      />
-    )}
+    List={(listProps) => <TeamChannelList {...listProps} type='ccm_public' />}
+    Preview={(previewProps) => <ChannelPreview {...previewProps} type='ccm_public' />}
   />
-)
+);
 const MessagingChannelsList = () => (
   <ChannelList
     channelRenderFilterFn={customChannelMessagingFilter}
@@ -98,20 +77,10 @@ const MessagingChannelsList = () => (
     sort={sort}
     setActiveChannelOnMount={false}
     EmptyStateIndicator={EmptyDMChannelListIndicator}
-    List={(listProps) => (
-      <TeamChannelList
-        {...listProps}
-        type='messaging'
-      />
-    )}
-    Preview={(previewProps) => (
-      <ChannelPreview
-        {...previewProps}
-        type='messaging'
-      />
-    )}
+    List={(listProps) => <TeamChannelList {...listProps} type='messaging' />}
+    Preview={(previewProps) => <ChannelPreview {...previewProps} type='messaging' />}
   />
-)
+);
 
 export const Sidebar = () => {
   return (
@@ -123,8 +92,8 @@ export const Sidebar = () => {
         </div>
         <CcmPublicChannelsList />
         <ChannelSearch />
-        <TeamChannelsList/>
-        <MessagingChannelsList/>
+        <TeamChannelsList />
+        <MessagingChannelsList />
       </div>
     </div>
   );

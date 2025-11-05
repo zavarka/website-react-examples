@@ -2,26 +2,26 @@
   @import '~stream-chat-react/dist/scss/v2/index.scss';
 }
 
-@import "global_theme_elements";
-@import "global_theme_variables";
-@import "layout";
+@import 'global_theme_elements';
+@import 'global_theme_variables';
+@import 'layout';
 
-@import "AdminPanel";
-@import "Attachment";
-@import "Channel";
-@import "ChannelList";
-@import "ChannelSearch";
-@import "Message";
-@import "MessageActions";
-@import "MessageInput";
-@import "MessageList";
-@import "MessageReactions";
-@import "PinnedMessageList";
-@import "Sidebar";
-@import "Thread";
-@import "TypingIndicator";
-@import "UserList";
-@import "WorkspaceHeader";
+// @import 'AdminPanel';      --> DELETED
+@import 'Attachment';
+@import 'Channel';
+@import 'ChannelList';
+@import 'ChannelSearch';
+@import 'Message';
+@import 'MessageActions';
+@import 'MessageInput';
+@import 'MessageList';
+@import 'MessageReactions';
+// @import 'PinnedMessageList'; --> DELETED
+// @import "Sidebar";           --> RELOCATED
+@import 'Thread';
+// @import 'TypingIndicator';   --> DELETED
+@import 'UserList';
+@import 'WorkspaceHeader';
 
 *::-webkit-scrollbar {
   width: 0.3rem;
