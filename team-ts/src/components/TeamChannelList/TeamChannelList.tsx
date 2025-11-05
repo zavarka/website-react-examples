@@ -46,7 +46,7 @@ const ChannelList = (props: PropsWithChildren<TeamChannelListProps>) => {
   }
 
   return (
-    <div className={clsx('team-channel-list', `team-channel-list--${type === 'team' ? 'group' : 'dm'}`)}>
+    <div className={clsx('team-channel-list', `team-channel-list--${type === 'team' || type === 'ccm_public' ? 'group' : 'dm'}`)}>
       <div className='team-channel-list__header'>
         <p className='team-channel-list__header__title'>
           {type === 'team' ? 'Channels' : 'Direct Messages'}

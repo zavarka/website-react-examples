@@ -15,10 +15,14 @@ import { ChannelSort } from 'stream-chat';
 
 
 
-const filters: ChannelFilters[] = [
-  { type: 'team', demo: 'team' },
-  { type: 'messaging', demo: 'team' },
-];
+
+  const filters: ChannelFilters[] = [
+    { type: 'team' },
+    { type: 'messaging' },
+    { type: 'ccm_public' },
+    { type: 'ccm_community' },
+    { type: 'ccm_member_sharing' },
+  ];
 const options = { state: true, watch: true, presence: true, limit: 3 };
 const sort: ChannelSort = { last_message_at: -1, updated_at: -1 };
 
@@ -36,6 +40,10 @@ const customChannelTeamFilter = (channels: Channel[]) => {
 
 const customChannelMessagingFilter = (channels: Channel[]) => {
   return channels.filter((channel) => channel.type === 'messaging');
+};
+
+const customCcmPublicChannelFilter = (channels: Channel[]) => {
+  return channels.filter((channel) => channel.type === 'ccm_public');
 };
 
 const TeamChannelsList = () => (
@@ -60,6 +68,28 @@ const TeamChannelsList = () => (
   />
 );
 
+const CcmPublicChannelsList = () => (
+  <ChannelList
+    channelRenderFilterFn={customCcmPublicChannelFilter}
+    filters={filters[2]}
+    options={options}
+    sort={sort}
+    setActiveChannelOnMount={false}
+    EmptyStateIndicator={EmptyDMChannelListIndicator}
+    List={(listProps) => (
+      <TeamChannelList
+        {...listProps}
+        type='ccm_public'
+      />
+    )}
+    Preview={(previewProps) => (
+      <ChannelPreview
+        {...previewProps}
+        type='ccm_public'
+      />
+    )}
+  />
+)
 const MessagingChannelsList = () => (
   <ChannelList
     channelRenderFilterFn={customChannelMessagingFilter}
@@ -91,6 +121,7 @@ export const Sidebar = () => {
         <div className='channel-list-bar__header'>
           <p className='channel-list-bar__header__text'>Worksly</p>
         </div>
+        <CcmPublicChannelsList />
         <ChannelSearch />
         <TeamChannelsList/>
         <MessagingChannelsList/>

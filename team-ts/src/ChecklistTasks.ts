@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import type { Event, StreamChat } from 'stream-chat';
 
 const notifyParent = (parent: string) => (message: any) => {
-  window.parent.postMessage(message, parent);
+  window.parent.postMessage(message, "*");
 };
 
 const YOUTUBE_LINK = 'https://youtu.be/Ujvy-DEA-UM';

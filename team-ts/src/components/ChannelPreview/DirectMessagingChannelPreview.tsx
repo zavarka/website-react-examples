@@ -11,7 +11,11 @@ export const DirectMessagingChannelPreview = ({channel}: DirectMessagingChannelP
   const defaultName = 'Johnny Blaze';
   let displayText;
 
-  if (!members.length || members.length === 1) {
+  if (!members.length) {
+    return 'no members available';
+  }
+
+  if (members.length === 1) {
     const member = members[0];
     displayText = member?.user?.name || member?.user?.id || defaultName;
     return (
