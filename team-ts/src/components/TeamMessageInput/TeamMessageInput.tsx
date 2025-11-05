@@ -19,6 +19,8 @@ import { useMessageInputCompositionControls } from './hooks/useMessageInputCompo
 import type { CustomDataManagerState, MessageComposerConfig } from 'stream-chat';
 import { SendButtonIcon } from './SendButtonIcon';
 
+import './styles/index.scss';
+
 const attachmentManagerConfigStateSelector = (state: MessageComposerConfig) => ({
   acceptedFiles: state.attachments.acceptedFiles,
   multipleUploads: state.attachments.maxNumberOfFilesPerMessage > 1,

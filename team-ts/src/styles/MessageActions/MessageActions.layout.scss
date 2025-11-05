@@ -1,4 +1,4 @@
-@use "../utils";
+@use '../utils';
 
 // FIXME: hack: hide "Reply" action (see: https://github.com/GetStream/stream-chat-react/issues/1779)
 .str-chat__thread-list .str-chat__message-actions-list button:first-child {
@@ -33,7 +33,7 @@
   }
 
   .str-chat__message-reactions-button {
-    @include reset-button-style;
+    @include utils.reset-button-style;
     display: flex;
     align-items: center;
   }

@@ -12,8 +12,10 @@
 
 .str-chat__message-team--editing {
   background: var(--panel-secondary-background-color);
-  box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.06), inset 0 1px 0 0 var(--primary-color),
-  inset 0 -1px 0 0 var(--primary-color);
+  box-shadow:
+    0 0 11px 0 rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 0 var(--primary-color),
+    inset 0 -1px 0 0 var(--primary-color);
 
   .str-chat__message-input {
     background: var(--panel-secondary-background-color);
@@ -36,7 +38,6 @@
     fill: var(--text-low-emphasis-color);
   }
 }
-
 
 .str-chat__quoted-message-preview {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -91,12 +92,11 @@
       }
 
       .str-chat__message-team-failed {
-        @include reset-button-style;
+        @include utils.reset-button-style;
         color: var(--error-color);
         cursor: pointer;
         font-size: var(--sm-font);
       }
-
     }
 
     .str-chat__message-team-content blockquote {
@@ -129,7 +129,6 @@
         font-size: 12px;
         font-weight: var(--font-weight-bold);
         background-color: #f8f8f8;
-
       }
 
       pre {
@@ -139,7 +138,7 @@
     }
 
     .str-chat__message-replies-count-button {
-      @include reset-button-style;
+      @include utils.reset-button-style;
       line-height: 15px;
       font-weight: var(--font-weight-bold);
       font-size: 14px;
@@ -155,12 +154,12 @@
 
 .str-chat__event-component__channel-event {
   .str-chat__event-component__channel-event__content {
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     font-size: 16px;
   }
 
   .str-chat__event-component__channel-event__sentence {
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     font-size: 16px;
   }
 

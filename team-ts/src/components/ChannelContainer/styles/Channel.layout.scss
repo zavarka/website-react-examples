@@ -1,5 +1,5 @@
-@import "../WorkspaceHeader";
-@import "../utils";
+@import '../../../styles/WorkspaceHeader';
+@import '../../../styles/utils';
 
 .team-channel-header__container {
   @include workspace-header-layout;
@@ -13,4 +13,3 @@
   font: var(--font-weight-medium);
   font-size: 14px;
 }
-

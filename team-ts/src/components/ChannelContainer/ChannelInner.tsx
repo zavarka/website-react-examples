@@ -10,6 +10,8 @@ import {
 import { TeamChannelHeader } from '../TeamChannelHeader/TeamChannelHeader';
 import { ThreadMessageInput } from '../TeamMessageInput/TeamMessageInput';
 
+import './styles/index.scss';
+
 export const ChannelInner = () => {
   // todo: migrate to channel capabilities once migration guide is available
   const teamPermissions: PinEnabledUserRoles = { ...defaultPinPermissions.team, user: true };

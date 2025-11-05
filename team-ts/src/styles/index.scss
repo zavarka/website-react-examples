@@ -8,12 +8,12 @@
 
 // @import 'AdminPanel';        --> DELETED
 @import 'Attachment';
-@import 'Channel';
+// @import 'Channel';           --> RELOCATED
 // @import 'ChannelList';       --> RELOCATED
 // @import 'ChannelSearch';     --> RELOCATED
 @import 'Message';
 @import 'MessageActions';
-@import 'MessageInput';
+// @import 'MessageInput';      --> RELOCATED
 @import 'MessageList';
 @import 'MessageReactions';
 // @import 'PinnedMessageList'; --> DELETED
@@ -21,7 +21,7 @@
 @import 'Thread';
 // @import 'TypingIndicator';   --> DELETED
 @import 'UserList';
-@import 'WorkspaceHeader';
+// @import 'WorkspaceHeader';   --> RELOCATED
 
 *::-webkit-scrollbar {
   width: 0.3rem;

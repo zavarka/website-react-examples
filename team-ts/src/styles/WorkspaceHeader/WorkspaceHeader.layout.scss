@@ -1,3 +1,5 @@
+@import '../utils';
+
 @mixin workspace-header-layout {
   height: var(--header-height);
   min-height: var(--header-height);
@@ -6,7 +8,7 @@
   justify-content: space-between;
   gap: 20px;
   padding: 0 20px;
-  
+
   .workspace-header__block,
   .workspace-header__block-item {
     display: flex;
