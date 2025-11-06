@@ -3,7 +3,7 @@ import { ChannelList } from 'stream-chat-react';
 import { ChannelPreview } from '../ChannelPreview/ChannelPreview';
 import { TeamChannelList } from '../TeamChannelList/TeamChannelList';
 import {
-  EmptyDMChannelListIndicator
+  EmptyGroupChannelListIndicator
 } from './EmptyChannelListIndicator';
 
 import { CompanyLogo } from './icons';
@@ -47,8 +47,8 @@ const CcmPublicChannelsList = () => (
     filters={filters[0]}
     options={options}
     sort={sort}
-    setActiveChannelOnMount={false}
-    EmptyStateIndicator={EmptyDMChannelListIndicator}
+    setActiveChannelOnMount={true}
+    EmptyStateIndicator={EmptyGroupChannelListIndicator}
     List={(listProps) => <TeamChannelList {...listProps} type='ccm_public' />}
     Preview={(previewProps) => <ChannelPreview {...previewProps} type='ccm_public' />}
   />
@@ -61,7 +61,7 @@ const CcmCommunityChannelsList = () => (
     options={options}
     sort={sort}
     setActiveChannelOnMount={false}
-    EmptyStateIndicator={EmptyDMChannelListIndicator}
+    EmptyStateIndicator={EmptyGroupChannelListIndicator}
     List={(listProps) => <TeamChannelList {...listProps} type='ccm_community' />}
     Preview={(previewProps) => <ChannelPreview {...previewProps} type='ccm_community' />}
   />

@@ -1,9 +1,10 @@
 import clsx from 'clsx';
-import React, {ElementRef, useMemo, useRef} from 'react';
-import type {TranslationLanguages} from 'stream-chat';
+import React, { ElementRef, useMemo, useRef } from 'react';
+import type { TranslationLanguages } from 'stream-chat';
 import {
   Attachment,
   Avatar,
+  renderText as defaultRenderText,
   DialogAnchor,
   EditMessageForm,
   isOnlyEmojis,
@@ -17,7 +18,6 @@ import {
   ReactionIcon,
   ReactionSelector,
   ReactionsList,
-  renderText as defaultRenderText,
   showMessageActionsBox,
   ThreadIcon,
   useDialog,
@@ -26,9 +26,8 @@ import {
   useTranslationContext,
 } from 'stream-chat-react';
 
-import {useWorkspaceController} from '../../context/WorkspaceController';
 
-import {ErrorIcon} from "./icons";
+import { ErrorIcon } from "./icons";
 
 export const TeamMessage = () => {
   const {
@@ -66,10 +65,7 @@ export const TeamMessage = () => {
     messageTextToRender,
     renderText,
   ]);
-
-  const { closePinnedMessageListOpen } = useWorkspaceController();
   const handleOpenThread = (event: React.BaseSyntheticEvent) => {
-    closePinnedMessageListOpen();
     handleOpenThreadContext(event);
   };
 

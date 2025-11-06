@@ -1,19 +1,11 @@
-import {useEffect} from 'react';
-import {StreamChat, TextComposerMiddleware} from 'stream-chat';
-import {Chat} from 'stream-chat-react';
+import { useEffect } from 'react';
+import { StreamChat } from 'stream-chat';
+import { Chat } from 'stream-chat-react';
 
-import {getRandomImage} from './assets';
-import {useChecklist} from './ChecklistTasks';
-import {ChannelContainer} from './components/ChannelContainer/ChannelContainer';
-import {Sidebar} from './components/Sidebar/Sidebar';
-
-import {WorkspaceController} from './context/WorkspaceController';
-
-import {
-  createDraftGiphyCommandInjectionMiddleware,
-  createGiphyCommandInjectionMiddleware
-} from "./middleware/composition/giphyCommandInjectionMiddleware";
-import {createGiphyCommandControlMiddleware} from "./middleware/textComposition/giphyCommandControl";
+import { getRandomImage } from './assets';
+import { useChecklist } from './ChecklistTasks';
+import { ChannelContainer } from './components/ChannelContainer/ChannelContainer';
+import { Sidebar } from './components/Sidebar/Sidebar';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -28,31 +20,6 @@ client.connectUser({ id: user!, name: 'Wheezie Test', image: getRandomImage() },
 
 const App = () => {
   useChecklist({ chatClient: client, targetOrigin: targetOrigin! });
-
-  useEffect(() => {
-    if (!client) return;
-
-    client.setMessageComposerSetupFunction(({ composer }) => {
-      composer.compositionMiddlewareExecutor.insert({
-        middleware: [
-          createGiphyCommandInjectionMiddleware(composer)
-        ],
-        position: {after: 'stream-io/message-composer-middleware/attachments'}
-      });
-      composer.draftCompositionMiddlewareExecutor.insert({
-        middleware: [
-          createDraftGiphyCommandInjectionMiddleware(composer)
-        ],
-        position: {after: 'stream-io/message-composer-middleware/draft-attachments'}
-      });
-      composer.textComposer.middlewareExecutor.insert({
-        middleware: [
-          createGiphyCommandControlMiddleware(composer) as TextComposerMiddleware,
-        ],
-        position: {before: 'stream-io/text-composer/pre-validation-middleware'}
-      })
-    });
-  }, []);
 
   useEffect(() => {
     const handleColorChange = (color: string) => {
@@ -74,10 +41,8 @@ const App = () => {
     <>
       <div className='app__wrapper str-chat'>
         <Chat client={client } theme={`team ${theme}`}>
-          <WorkspaceController>
             <Sidebar />
             <ChannelContainer />
-          </WorkspaceController>
         </Chat>
       </div>
     </>

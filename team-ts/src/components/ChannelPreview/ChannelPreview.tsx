@@ -4,8 +4,6 @@ import { ChannelPreviewUIComponentProps, useChatContext } from 'stream-chat-reac
 
 import { TeamChannelPreview } from './TeamChannelPreview';
 
-import { useWorkspaceController } from '../../context/WorkspaceController';
-
 import './styles/index.scss';
 
 type TeamChannelPreviewProps = ChannelPreviewUIComponentProps & {
@@ -14,14 +12,12 @@ type TeamChannelPreviewProps = ChannelPreviewUIComponentProps & {
 
 export const ChannelPreview = ({ channel }: TeamChannelPreviewProps) => {
   const { channel: activeChannel, setActiveChannel } = useChatContext();
-  const { displayWorkspace } = useWorkspaceController();
 
   const handleClick = useCallback(() => {
-    displayWorkspace('Chat');
     if (setActiveChannel) {
       setActiveChannel(channel);
     }
-  }, [channel, displayWorkspace, setActiveChannel]);
+  }, [channel, setActiveChannel]);
 
   return (
     <button
