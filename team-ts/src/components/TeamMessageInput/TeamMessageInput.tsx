@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
+import { useDropzone } from 'react-dropzone';
 import {
   AttachmentPreviewList,
   SendButton,
@@ -10,13 +11,11 @@ import {
   useMessageInputContext,
   useStateStore,
 } from 'stream-chat-react';
-import { useDropzone } from 'react-dropzone';
 
-import { GiphyBadge } from './GiphyBadge';
-import { MessageInputControlButton } from './MessageInputControls';
+import type { CustomDataManagerState, MessageComposerConfig } from 'stream-chat';
 import { EmojiPicker } from './EmojiPicker';
 import { useMessageInputCompositionControls } from './hooks/useMessageInputCompositionControls';
-import type { CustomDataManagerState, MessageComposerConfig } from 'stream-chat';
+import { MessageInputControlButton } from './MessageInputControls';
 import { SendButtonIcon } from './SendButtonIcon';
 
 import './styles/index.scss';
@@ -28,7 +27,6 @@ const attachmentManagerConfigStateSelector = (state: MessageComposerConfig) => (
 
 const customComposerDataSelector = (state: CustomDataManagerState) => ({
   activeFormatting: state.custom.activeFormatting,
-  isComposingGiphyText: state.custom.command === 'giphy',
 });
 
 export const TeamMessageInput = () => {
@@ -39,7 +37,7 @@ export const TeamMessageInput = () => {
     messageComposer.configState,
     attachmentManagerConfigStateSelector,
   );
-  const { activeFormatting, isComposingGiphyText } = useStateStore(
+  const { activeFormatting } = useStateStore(
     messageComposer.customDataManager.state,
     customComposerDataSelector,
   );
@@ -78,7 +76,6 @@ export const TeamMessageInput = () => {
         <div className='team-message-input__top'>
           <AttachmentPreviewList />
           <div className='team-message-input__form'>
-            {isComposingGiphyText && <GiphyBadge />}
             <TextareaComposer placeholder={placeholder} />
 
             <SendButton disabled={!hasSendableData} sendMessage={handleSubmit} />
@@ -114,16 +111,11 @@ export const TeamMessageInput = () => {
 
 export const ThreadMessageInput = () => {
   const { handleSubmit } = useMessageInputContext();
-  const messageComposer = useMessageComposer();
   const hasSendableData = useMessageComposerHasSendableData();
-  const { isComposingGiphyText } = useStateStore(
-    messageComposer.customDataManager.state,
-    customComposerDataSelector,
-  );
+
   return (
     <div className='thread-message-input__wrapper'>
       <div className='thread-message-input__input'>
-        {isComposingGiphyText && <GiphyBadge />}
         <TextareaComposer placeholder='Reply' />
         <EmojiPicker />
 
