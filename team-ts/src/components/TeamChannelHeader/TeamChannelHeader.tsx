@@ -1,30 +1,15 @@
-import { MouseEventHandler, useCallback } from 'react';
-import { Avatar, useChannelActionContext, useChannelStateContext, useChatContext } from 'stream-chat-react';
+import { Avatar, useChannelStateContext, useChatContext } from 'stream-chat-react';
 
-import { PinIcon } from '../../assets';
-
-import { ChannelInfoIcon } from './ChannelInfoIcon';
-import { useWorkspaceController } from '../../context/WorkspaceController';
 
 
 
 export const TeamChannelHeader = () => {
-  const { displayWorkspace } = useWorkspaceController();
   const { client } = useChatContext();
   const { channel, watcher_count } = useChannelStateContext();
-  const { closeThread } = useChannelActionContext();
-  const { togglePinnedMessageListOpen } = useWorkspaceController();
 
   const teamHeader = `# ${channel?.data?.name || channel?.data?.id || 'random'}`;
 
-  const openChannelEditPanel = useCallback(() => {
-    displayWorkspace('Admin-Channel-Edit');
-  }, [displayWorkspace]);
 
-  const onPinIconClick: MouseEventHandler = useCallback((event) => {
-    closeThread?.(event);
-    togglePinnedMessageListOpen();
-  }, [closeThread, togglePinnedMessageListOpen])
 
   const getMessagingHeader = () => {
     const members = Object.values(channel.state.members).filter(
@@ -74,20 +59,10 @@ export const TeamChannelHeader = () => {
       ) : (
         <div className='workspace-header__block'>
           <div className='team-channel-header__name workspace-header__title'>{teamHeader}</div>
-          <button onClick={openChannelEditPanel}>
-            <ChannelInfoIcon />
-          </button>
         </div>
       )}
       <div className='workspace-header__block'>
         <div className='workspace-header__subtitle'>{getWatcherText(watcher_count)}</div>
-        <button
-          className='workspace-header__subtitle'
-          onClick={onPinIconClick}
-        >
-          <PinIcon />
-          Pins
-        </button>
       </div>
     </div>
   );

@@ -26,8 +26,6 @@ import {
   useTranslationContext,
 } from 'stream-chat-react';
 
-import {PinIndicator} from './PinIndicator';
-
 import {useWorkspaceController} from '../../context/WorkspaceController';
 
 import {ErrorIcon} from "./icons";
@@ -115,7 +113,6 @@ export const TeamMessage = () => {
     'str-chat__message-team',
     `str-chat__message-team--${firstGroupStyle}`,
     {
-      'pinned-message': message.pinned,
       [`str-chat__message-team--${message.status}`]: message.status,
       [`str-chat__message-team--${message.type}`]: message.type,
       'str-chat__message--has-attachment': !!message.attachments?.length,
@@ -124,8 +121,7 @@ export const TeamMessage = () => {
   );
 
   return (
-    <div className={message.pinned ? 'pinned-message' : 'unpinned-message'}>
-      {message.pinned && <PinIndicator message={message}/>}
+    <div className={'unpinned-message'}>
       <div
         className={rootClass}
         data-testid='message-team'
@@ -241,7 +237,7 @@ export const TeamMessage = () => {
               </button>
             )}
           </div>
-          <MessageStatus messageType='team'/>
+          <MessageStatus messageType='ccm_public'/>
           {message.text && message.attachments?.length && Attachment ? (
             <Attachment actionHandler={handleAction} attachments={message.attachments}/>
           ) : null}

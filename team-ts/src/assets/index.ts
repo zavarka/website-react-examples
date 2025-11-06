@@ -23,9 +23,6 @@ import Avatar22 from '../assets/userImages/photo-1546967191-fdfb13ed6b1e.jpeg';
 import Avatar23 from '../assets/userImages/photo-1502937406922-305bb2789e95.jpeg';
 import Avatar24 from '../assets/userImages/photo-1552058544-f2b08422138a.jpeg';
 
-export { PinIcon } from './PinIcon';
-export { SearchIcon } from './SearchIcon';
-
 const randomImages = [
   Avatar1,
   Avatar2,

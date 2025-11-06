@@ -26,7 +26,7 @@ export const useMessageInputCompositionControls = () => {
   const placeholder = useMemo(() => {
     let dynamicPart = 'the group';
 
-    if (channel.type === 'team') {
+    if (channel.type === 'ccm_public') {
       dynamicPart = `#${channel?.data?.name || channel?.data?.id || 'random'}`;
 
     }

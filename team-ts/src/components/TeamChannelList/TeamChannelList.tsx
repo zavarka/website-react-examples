@@ -1,11 +1,9 @@
-import React, { PropsWithChildren, useCallback } from 'react';
+import React, { PropsWithChildren } from 'react';
 
-import { AddChannelButton } from './AddChannelButton';
 
-import { useWorkspaceController, Workspace } from '../../context/WorkspaceController';
 
-import type { ChannelListMessengerProps } from 'stream-chat-react';
 import clsx from 'clsx';
+import type { ChannelListMessengerProps } from 'stream-chat-react';
 
 import './styles/index.scss';
 
@@ -16,14 +14,9 @@ export type TeamChannelListProps = ChannelListMessengerProps & {
 const ChannelList = (props: PropsWithChildren<TeamChannelListProps>) => {
   const { children, error = false, loading, type } = props;
 
-  const { displayWorkspace } = useWorkspaceController();
-
-  const handleAddChannelClick = useCallback(() => {
-    displayWorkspace(`Admin-Admin-Channel-Create__${type}` as Workspace);
-  }, [type, displayWorkspace]);
 
   if (error) {
-    return type === 'team' ? (
+    return type === 'ccm_public' ? (
       <div className='team-channel-list'>
         <p className='team-channel-list__message'>
           Connection error, please wait a moment and try again.
@@ -36,7 +29,7 @@ const ChannelList = (props: PropsWithChildren<TeamChannelListProps>) => {
     return (
       <div className='team-channel-list'>
         <p className='team-channel-list__message loading'>
-          {type === 'team' ? 'Channels' : 'Messages'} loading....
+          Channels loading....
         </p>
       </div>
     );
@@ -46,14 +39,14 @@ const ChannelList = (props: PropsWithChildren<TeamChannelListProps>) => {
     <div
       className={clsx(
         'team-channel-list',
-        `team-channel-list--${type === 'team' || type === 'ccm_public' ? 'group' : 'dm'}`,
+        `team-channel-list--group'}`,
       )}
     >
       <div className='team-channel-list__header'>
         <p className='team-channel-list__header__title'>
-          {type === 'team' ? 'Channels' : 'Direct Messages'}
+          {type === 'ccm_public' && 'CCM Public'}
+          {type === 'ccm_community' && 'CCM Community'}
         </p>
-        <AddChannelButton onClick={handleAddChannelClick} />
       </div>
       {children}
     </div>

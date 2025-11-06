@@ -1,12 +1,10 @@
 import { ChannelList } from 'stream-chat-react';
 
-import {
-  EmptyDMChannelListIndicator,
-  EmptyGroupChannelListIndicator,
-} from './EmptyChannelListIndicator';
-import { ChannelSearch } from '../ChannelSearch/ChannelSearch';
-import { TeamChannelList } from '../TeamChannelList/TeamChannelList';
 import { ChannelPreview } from '../ChannelPreview/ChannelPreview';
+import { TeamChannelList } from '../TeamChannelList/TeamChannelList';
+import {
+  EmptyDMChannelListIndicator
+} from './EmptyChannelListIndicator';
 
 import { CompanyLogo } from './icons';
 
@@ -16,12 +14,11 @@ import { ChannelSort } from 'stream-chat';
 import './styles/index.scss';
 
 const filters: ChannelFilters[] = [
-  { type: 'team' },
-  { type: 'messaging' },
   { type: 'ccm_public' },
   { type: 'ccm_community' },
-  { type: 'ccm_member_sharing' },
+
 ];
+
 const options = { state: true, watch: true, presence: true, limit: 3 };
 const sort: ChannelSort = { last_message_at: -1, updated_at: -1 };
 
@@ -33,34 +30,21 @@ const FakeCompanySelectionBar = () => (
   </div>
 );
 
-const customChannelTeamFilter = (channels: Channel[]) => {
-  return channels.filter((channel) => channel.type === 'team');
-};
 
-const customChannelMessagingFilter = (channels: Channel[]) => {
-  return channels.filter((channel) => channel.type === 'messaging');
-};
 
 const customCcmPublicChannelFilter = (channels: Channel[]) => {
   return channels.filter((channel) => channel.type === 'ccm_public');
 };
 
-const TeamChannelsList = () => (
-  <ChannelList
-    channelRenderFilterFn={customChannelTeamFilter}
-    filters={filters[0]}
-    options={options}
-    sort={sort}
-    EmptyStateIndicator={EmptyGroupChannelListIndicator}
-    List={(listProps) => <TeamChannelList {...listProps} type='team' />}
-    Preview={(previewProps) => <ChannelPreview {...previewProps} type='team' />}
-  />
-);
+const customCcmCommunityChannelFilter = (channels: Channel[]) => {
+  return channels.filter((channel) => channel.type === 'ccm_community');
+};
+
 
 const CcmPublicChannelsList = () => (
   <ChannelList
     channelRenderFilterFn={customCcmPublicChannelFilter}
-    filters={filters[2]}
+    filters={filters[0]}
     options={options}
     sort={sort}
     setActiveChannelOnMount={false}
@@ -69,16 +53,17 @@ const CcmPublicChannelsList = () => (
     Preview={(previewProps) => <ChannelPreview {...previewProps} type='ccm_public' />}
   />
 );
-const MessagingChannelsList = () => (
+
+const CcmCommunityChannelsList = () => (
   <ChannelList
-    channelRenderFilterFn={customChannelMessagingFilter}
+    channelRenderFilterFn={customCcmCommunityChannelFilter}
     filters={filters[1]}
     options={options}
     sort={sort}
     setActiveChannelOnMount={false}
     EmptyStateIndicator={EmptyDMChannelListIndicator}
-    List={(listProps) => <TeamChannelList {...listProps} type='messaging' />}
-    Preview={(previewProps) => <ChannelPreview {...previewProps} type='messaging' />}
+    List={(listProps) => <TeamChannelList {...listProps} type='ccm_community' />}
+    Preview={(previewProps) => <ChannelPreview {...previewProps} type='ccm_community' />}
   />
 );
 
@@ -88,12 +73,10 @@ export const Sidebar = () => {
       <FakeCompanySelectionBar />
       <div className='channel-list-bar'>
         <div className='channel-list-bar__header'>
-          <p className='channel-list-bar__header__text'>Worksly</p>
+          <p className='channel-list-bar__header__text'>Prayerstream</p>
         </div>
         <CcmPublicChannelsList />
-        <ChannelSearch />
-        <TeamChannelsList />
-        <MessagingChannelsList />
+        <CcmCommunityChannelsList />
       </div>
     </div>
   );
